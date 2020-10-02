@@ -1,0 +1,12 @@
+
+
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <br>
+    <h4> {{object.content}}</h4>
+    <br>
+    <h6>- {{object.user}} || {{obj.timestamp|timesince}} ago</h6>
+    <br><hr>
+{% endblock content %}

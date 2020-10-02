@@ -1,0 +1,19 @@
+
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+
+  <form class = 'form' method = 'POST' action="">
+    {% csrf_token %}
+
+  Are u sure abt deleting the tweet? 
+
+  <input type="submit" value= "delete" >
+  
+
+  </form>
+
+{% endblock content %}

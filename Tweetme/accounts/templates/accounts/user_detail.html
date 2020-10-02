@@ -1,0 +1,65 @@
+ {% extends 'base.html' %} {% block content %}
+<div class='row'>
+    <div class='col-sm-3 col-xs-12' style="background-color:cyan; height:30vh;">
+        <h1> {{object.username}} </h1>
+        <h6>followers => {{ object.followed_by.all.count }} </h6>
+    <br>
+    <!-- <button role="button" class="btn btn-info" href='{% url "accounts:follow" username=object.username %}'>Toggle follow</button> -->
+<a class="btn btn-info" href = '{{ object.account.get_follow_url  }}' >
+    
+{% if following %}
+    Unfollow
+    {% else %}
+    follow
+{% endif %}    
+    
+</a>
+
+    </div>
+    <div class='col-sm-9 col-xs-12'>
+        <h1>
+            Tweets
+        </h1>
+        {% for tweet in object.tweet_set.all %} {{ tweet.content }}
+
+        <br> {% endfor %}
+
+        <h4>Following</h4>
+        {% for user in object.account.get_following %}
+
+        <a href="/profile/{{ user.username }}"> {{ user.username }} </a><br> {% empty %}
+        -- Not ANY --
+
+        {% endfor %} 
+        
+       <h4> Followers </h4>
+        {% for account in object.followed_by.all %} 
+        
+        {{account.user.username}}
+
+        <br>
+         {% empty %} 
+         No Followers 
+         {% endfor %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+</div>
+
+{% endblock content %}
